@@ -9,7 +9,12 @@ const findUserWithEmail = (email) => {
 };
 
 const getUserById = (id) => {
-  return database.users.reduce( user => user.id === id );
+  return database.users.filter( user => user.id === id ).map( user => userModel.getUser(user.fname, user.lname));
+};
+
+
+const getAllUsers = () => {
+  return database.users.map( user => userModel.getUser(user.fname, user.lname) );
 };
 
 const saveUserToDB = (fname, lname, email, password) => {
@@ -25,4 +30,4 @@ const saveUserToDB = (fname, lname, email, password) => {
   return userBody;
 };
 
-module.exports = { findUserWithId, findUserWithEmail, saveUserToDB, getUserById };
+module.exports = { findUserWithId, findUserWithEmail, saveUserToDB, getUserById, getAllUsers };

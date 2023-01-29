@@ -6,4 +6,9 @@ const extractBodyContentMiddleware = (req, res, next) => {
   next();
 };
 
-module.exports = { extractBodyContentMiddleware };
+const extractIdMiddleware = (req, res, next) => {
+  req.id = Number(req.params.id);
+  next();
+};
+
+module.exports = { extractBodyContentMiddleware, extractIdMiddleware };
